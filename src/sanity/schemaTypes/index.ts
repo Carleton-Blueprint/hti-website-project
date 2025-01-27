@@ -1,5 +1,9 @@
-import { type SchemaTypeDefinition } from 'sanity'
+import aboutUs from './aboutUs';
+import teamMember from './teamMember';
+import upcomingEvent from './upcomingEvent';
+import previousEvent from './previousEvent';
+import blogPost from './blogPost';
+import resource from './resource';
+import formLink from './formLink';
 
-export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [],
-}
+export const schemaTypes = [aboutUs, teamMember, upcomingEvent, previousEvent, blogPost, resource, formLink];
