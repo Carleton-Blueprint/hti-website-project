@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, Group, Box, Button } from '@mantine/core';
+import { Container, Group, Box, Button, Menu } from '@mantine/core';
+import { IconChevronDown } from '@tabler/icons-react';
 import { useState, useEffect } from 'react';
 import classes from './Navbar.module.css';
 
@@ -52,27 +53,61 @@ const Navbar = () => {
             </Link>
           </Box>
           
-          <Group gap={40} visibleFrom="sm">
-            {[
-              { href: '/', label: 'Home' },
-              { href: '/events', label: 'Events' },
-              { href: '/resources', label: 'Resources' },
-              { href: '/news', label: 'News' },
-            ].map((link) => (
-              <Box key={link.href} style={{ display: 'flex', alignItems: 'center' }}>
-                <Link href={link.href} className={classes.navLink}>
-                  {link.label}
-                </Link>
-              </Box>
-            ))}
-            <Button
-              variant="gradient"
-              gradient={{ from: '#FF914D', to: '#ff6b1a' }}
-              size="sm"
-              className={classes.joinButton}
+          <Group gap={32} visibleFrom="sm">
+            <Link href="/" className={classes.navLink}>
+              Home
+            </Link>
+            <Link href="/about-us" className={classes.navLink}>
+              About Us
+            </Link>
+            <Menu 
+              trigger="hover" 
+              openDelay={100} 
+              closeDelay={200}
+              position="bottom"
+              offset={0}
+              withArrow
+              styles={{
+                dropdown: {
+                  backgroundColor: '#004AAD',
+                  border: 'none',
+                  padding: '8px',
+                },
+                arrow: {
+                  backgroundColor: '#004AAD',
+                },
+              }}
             >
-              Join Us
-            </Button>
+              <Menu.Target>
+                <Box className={classes.navLink} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  Discover <IconChevronDown size={16} />
+                </Box>
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item component={Link} href="/team" className={classes.menuItem}>
+                  Our Team
+                </Menu.Item>
+                <Menu.Item component={Link} href="/upcoming-events" className={classes.menuItem}>
+                  Events
+                </Menu.Item>
+                <Menu.Item component={Link} href="/news-blog" className={classes.menuItem}>
+                  News
+                </Menu.Item>
+                <Menu.Item component={Link} href="/resource" className={classes.menuItem}>
+                  Resources
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+            <Link href="/sign-up">
+              <Button
+                variant="gradient"
+                gradient={{ from: '#FF914D', to: '#ff6b1a' }}
+                size="sm"
+                className={classes.joinButton}
+              >
+                Sign Up
+              </Button>
+            </Link>
           </Group>
         </Group>
       </Container>
