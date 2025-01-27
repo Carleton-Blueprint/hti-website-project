@@ -1,37 +1,71 @@
+'use client';
+
+import { Container, Title, Text, Button, Group, Stack, Box, Grid, Image } from '@mantine/core';
+import { IconArrowRight } from '@tabler/icons-react';
+
 const Hero = () => {
   return (
-    <div className="flex min-h-screen bg-[#004AAD] pt-16 font-['Arial',_'Helvetica',_'Open_Sans',_sans-serif]">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-        {/* Left side - Image */}
-        <div className="w-full md:w-1/2 p-8">
-          <div className="bg-[#E6F0FF] rounded-lg p-8 aspect-square max-w-md mx-auto">
-            {/* Placeholder for illustration */}
-            <div className="w-full h-full relative">
-              <div className="absolute bottom-0 w-full">
-                <div className="bg-[#90EE90] h-32 rounded-t-full"></div>
-                <div className="bg-[#32CD32] h-24"></div>
-              </div>
-              <div className="absolute top-8 left-1/2 -translate-x-1/2">
-                <div className="bg-white w-24 h-12 rounded-full"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <Box 
+      pos="relative" 
+      style={{ 
+        minHeight: '600px',
+        background: '#004AAD',
+      }}
+      pt={100}  
+      pb={40}
+    >
+      <Container size="lg">
+        <Grid align="center" gutter={40}>
+          <Grid.Col span={{ base: 12, md: 6 }}>
+            <Stack gap="xl">
+              <Title
+                order={1}
+                size="3.5rem"
+                fw={800}
+                c="white"
+              >
+                Innovating Healthcare Through Technology
+              </Title>
+              
+              <Text size="xl" c="white">
+                Join a community of passionate students and professionals dedicated to transforming healthcare 
+                through innovative technological solutions.
+              </Text>
 
-        {/* Right side - Text */}
-        <div className="w-full md:w-1/2 p-8 text-left">
-          <h1 className="text-[#FF914D] text-6xl md:text-7xl font-bold leading-tight mb-8 tracking-tight">
-            Healthcare,<br />
-            Technology<br />
-            & Business.
-          </h1>
-          <button className="bg-transparent border-2 border-white text-white px-8 py-3 text-lg font-semibold hover:bg-white hover:text-[#004AAD] transition-all tracking-wide">
-            LEARN MORE
-          </button>
-        </div>
-      </div>
-    </div>
+              <Group>
+                <Button 
+                  size="lg" 
+                  rightSection={<IconArrowRight size={20} />}
+                  color="orange"
+                >
+                  Join Us Now
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  color="white"
+                >
+                  Learn More
+                </Button>
+              </Group>
+            </Stack>
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, md: 6 }}>
+            <Image
+              src="https://placehold.co/800x600/ffffff/004AAD?text=Health+Tech+Placeholder"
+              alt="Health Tech Innovators"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                borderRadius: '8px',
+              }}
+            />
+          </Grid.Col>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
-export default Hero; 
+export default Hero;
