@@ -5,6 +5,7 @@
   border-radius: 4px;
   position: relative;
   font-weight: 500;
+  font-family: var(--styrene-a), sans-serif;
   transition: all 0.3s ease;
 }
 
@@ -40,6 +41,7 @@
 }
 
 .joinButton {
+  font-family: var(--styrene-a), sans-serif !important;
   transition: all 0.3s ease !important;
   transform: translateY(0);
 }
@@ -47,4 +49,18 @@
 .joinButton:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 4px 12px rgba(255, 145, 77, 0.3) !important;
+}
+
+.menuItem {
+  color: white !important;
+  font-weight: 500;
+  font-family: var(--styrene-a), sans-serif !important;
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.menuItem:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #FF914D !important;
 } 
