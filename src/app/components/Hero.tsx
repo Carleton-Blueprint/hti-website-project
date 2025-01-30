@@ -12,8 +12,11 @@ import {
   Image,
 } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
+
   return (
     <Box
       pos="relative"
@@ -25,7 +28,6 @@ const Hero = () => {
       pt={120}
       pb={80}
     >
-      {/* Background Pattern */}
       <Box
         style={{
           position: "absolute",
@@ -78,6 +80,7 @@ const Hero = () => {
                 <Button
                   size="lg"
                   rightSection={<IconArrowRight size={20} />}
+                  onClick={() => router.push("/sign-up")}
                   style={{
                     backgroundColor: "#FF914D",
                     "&:hover": {
