@@ -80,7 +80,7 @@ export function Team() {
             size="xl"
             style={{
               color: "#0047AB",
-              height: '400px',
+              height: '100%',
               '&:hover': {
                 backgroundColor: "rgba(0, 71, 171, 0.1)",
               }
@@ -105,7 +105,7 @@ export function Team() {
                   boxShadow: "0 8px 24px rgba(0, 71, 171, 0.08)",
                   transition: "transform 0.2s ease, box-shadow 0.2s ease",
                   height: '400px',
-                  width: '100%', 
+                  width: '250px', 
                   maxWidth: '350px', 
                   margin: '0 auto', 
                   display: 'flex',
@@ -119,10 +119,11 @@ export function Team() {
                 <Card.Section style={{ flex: 1 }}>
                   <Image
                     src={member.imageUrl}
-                    height={320}
+                    height="100%"
                     alt={member.name}
                     fit="cover"
                   />
+
                 </Card.Section>
 
                 <Text 
@@ -150,7 +151,7 @@ export function Team() {
             size="xl"
             style={{
               color: "#0047AB",
-              height: '400px',
+              height: '100%',
               '&:hover': {
                 backgroundColor: "rgba(0, 71, 171, 0.1)",
               }
