@@ -1,3 +1,11 @@
-export default function team() {
-    return <>Team</>
-  };
+import {Team} from "../components/Team";
+import Navbar from "../components/Navbar";
+
+export default function TeamPage() {
+  return (
+    <main>
+      <Navbar />
+      <Team />
+    </main>
+  );
+}
