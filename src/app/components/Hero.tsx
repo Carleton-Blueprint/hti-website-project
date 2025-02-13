@@ -21,12 +21,12 @@ const Hero = () => {
     <Box
       pos="relative"
       style={{
-        minHeight: "90vh",
-        background: "linear-gradient(135deg, #004AAD 0%, #003380 100%)",
-        overflow: "hidden",
+      minHeight: "92vh",
+      background: "linear-gradient(135deg, #004AAD 0%, #002255 100%)",
+      overflow: "hidden",
       }}
-      pt={120}
-      pb={80}
+      pt={140}
+      pb={100}
     >
       <Box
         style={{
@@ -35,8 +35,8 @@ const Hero = () => {
           right: 0,
           bottom: 0,
           left: 0,
-          background:
-            "radial-gradient(circle at 20% 150%, rgba(255, 145, 77, 0.15) 0%, transparent 50%)",
+            background:
+            "radial-gradient(circle at 20% 150%, rgba(255, 145, 77, 0.2) 0%, transparent 60%), radial-gradient(circle at 80% -20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%)",
           zIndex: 0,
         }}
       />
@@ -48,28 +48,32 @@ const Hero = () => {
               <div>
                 <Text
                   size="xl"
-                  fw={600}
+                  fw={700}
                   style={{
-                    color: "#FF914D",
-                    marginBottom: "0.5rem",
+                  color: "#FF914D",
+                  marginBottom: "0.75rem",
+                  letterSpacing: "0.5px",
+                  textShadow: "0 2px 4px rgba(0,0,0,0.1)",
                   }}
                 >
                   Welcome to Health Tech Innovators
                 </Text>
                 <Title
                   order={1}
-                  size="3.5rem"
-                  fw={800}
-                  c="white"
-                  style={{
-                    lineHeight: 1.2,
-                  }}
+                    size="4rem"
+                    fw={900}
+                    c="white"
+                    style={{
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.5px",
+                    textShadow: "0 2px 4px rgba(0,0,0,0.15)",
+                    }}
                 >
                   Innovating Healthcare Through Technology
                 </Title>
               </div>
 
-              <Text size="xl" c="white" style={{ opacity: 0.9 }}>
+                <Text size="xl" c="white" style={{ opacity: 0.95, lineHeight: 1.6, maxWidth: "90%" }}>
                 Join a vibrant community of passionate innovators dedicated to
                 transforming healthcare through cutting-edge technological
                 solutions. Together, we&apos;re shaping the future of
@@ -81,12 +85,15 @@ const Hero = () => {
                   size="lg"
                   rightSection={<IconArrowRight size={20} />}
                   onClick={() => router.push("/sign-up")}
-                  style={{
+                    style={{
                     backgroundColor: "#FF914D",
+                    transition: "all 0.3s ease",
                     "&:hover": {
                       backgroundColor: "#ff7a1f",
+                      transform: "translateY(-2px)",
+                      boxShadow: "0 4px 12px rgba(255, 145, 77, 0.3)",
                     },
-                  }}
+                    }}
                 >
                   Join Us Now
                 </Button>
@@ -94,13 +101,17 @@ const Hero = () => {
                   size="lg"
                   variant="outline"
                   color="white"
-                  style={{
+                    style={{
                     borderColor: "white",
+                    borderWidth: "2px",
                     color: "white",
+                    transition: "all 0.3s ease",
                     "&:hover": {
-                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      backgroundColor: "rgba(255, 255, 255, 0.15)",
+                      transform: "translateY(-2px)",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
                     },
-                  }}
+                    }}
                 >
                   Learn More
                 </Button>
@@ -115,13 +126,13 @@ const Hero = () => {
                 "&::before": {
                   content: '""',
                   position: "absolute",
-                  top: -20,
-                  left: -20,
-                  right: 20,
-                  bottom: 20,
-                  background: "#FF914D",
-                  borderRadius: "16px",
-                  opacity: 0.1,
+                    top: -25,
+                    left: -25,
+                    right: 25,
+                    bottom: 25,
+                    background: "linear-gradient(135deg, #FF914D 0%, #ff7a1f 100%)",
+                    borderRadius: "20px",
+                    opacity: 0.15,
                   zIndex: 0,
                 },
               }}
@@ -130,12 +141,17 @@ const Hero = () => {
                 src="/hero-image.jpg"
                 alt="Health Tech Innovation"
                 style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                  borderRadius: "16px",
-                  position: "relative",
-                  zIndex: 1,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+                    maxWidth: "100%",
+                    height: "auto",
+                    borderRadius: "20px",
+                    position: "relative",
+                    zIndex: 1,
+                    boxShadow: "0 24px 48px rgba(0,0,0,0.25)",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    "&:hover": {
+                    transform: "scale(1.02)",
+                    boxShadow: "0 28px 56px rgba(0,0,0,0.3)",
+                    },
                 }}
               />
             </Box>

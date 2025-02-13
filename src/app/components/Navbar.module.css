@@ -64,3 +64,33 @@
   background-color: rgba(255, 255, 255, 0.1) !important;
   color: #FF914D !important;
 } 
+
+.mobileNavLink {
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.mobileNavLink:hover {
+  color: #FF914D;
+}
+
+.mobileSubLink {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease;
+}
+
+.mobileSubLink:hover {
+  color: #FF914D;
+}
+
+.mainLinks {
+  height: 100%;
+}
