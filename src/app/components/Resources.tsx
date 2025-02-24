@@ -20,8 +20,8 @@ import {
 const resources = [
   {
     name: "Tips",
-    category: "Research Opportunity",
-    description: "Annual research grant for innovative healthcare technology projects. Open to undergraduate and graduate students.",
+    category: "Tips & Tricks",
+    description: "Learn how to write a proposal for healthcare technology projects.",
     link: "https://example.com/grant",
     icon: IconBulb
   },
