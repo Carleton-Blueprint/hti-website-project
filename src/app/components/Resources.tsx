@@ -40,7 +40,7 @@ const resources = [
     icon: IconMicroscope
   },
   {
-    name: "Scholarships",
+    name: "Funds",
     category: "Funds",
     description: "Funding opportunity for student-led healthcare technology projects and startups.",
     link: "https://example.com/fund",
