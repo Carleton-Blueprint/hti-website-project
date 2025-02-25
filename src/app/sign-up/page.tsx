@@ -42,7 +42,7 @@ export default function SignUp() {
             }}
           >
             <iframe
-              src="https://forms.google.com"
+              src="https://docs.google.com/forms/d/1PGCbPxu2vddxVkTveh428_vzBEd8zbtA9pGgg0C7mrQ/viewform?edit_requested=true"
               style={{
                 width: "100%",
                 height: "800px",
