@@ -640,11 +640,18 @@ export default function Home() {
         zIndex: 1,
         marginTop: "-80px",
         paddingTop: "80px",
+        color: "var(--text-primary)",
       }}
     >
       <ParallaxBackground />
 
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          color: "var(--text-primary)",
+        }}
+      >
         <Navbar />
         <Hero />
         <Features />
