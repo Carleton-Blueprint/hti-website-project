@@ -40,6 +40,10 @@ body {
   overflow-x: hidden;
 }
 
+p, h1, h2, h3, h4, h5, h6, span, a, div {
+  color: var(--text-primary);
+}
+
 .grid-bg {
   background-color: white;
   background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
