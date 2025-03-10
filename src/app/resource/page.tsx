@@ -1,4 +1,4 @@
-import { Resources } from "../components/Resources";
+import { Resources } from "./Resources";
 import Navbar from "../components/Navbar";
 export default function resource() {
   return (
