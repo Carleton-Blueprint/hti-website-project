@@ -2,23 +2,16 @@
 
 import { Container, Title, Text, Button, Group, Box } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
+import SectionSeparator from "./SectionSeparator";
 
 export default function CallToAction() {
   return (
-    <div style={{ position: "relative", marginTop: "-40px" }}>
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "120px",
-          background:
-            "linear-gradient(to bottom, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.5) 40%, rgba(248, 249, 250, 0.2) 70%, transparent)",
-          zIndex: 2,
-          pointerEvents: "none",
-          borderRadius: "60px 60px 0 0",
-        }}
+    <div style={{ position: "relative", marginTop: "20px" }}>
+      <SectionSeparator
+        color="#FF914D"
+        glowColor="rgba(255, 145, 77, 0.6)"
+        marginBottom={0}
+        marginTop={0}
       />
 
       <Box
@@ -28,7 +21,7 @@ export default function CallToAction() {
           position: "relative",
           overflow: "hidden",
           paddingTop: "150px",
-          borderRadius: "60px 60px 0 0",
+          borderRadius: "0",
         }}
       >
         <Box

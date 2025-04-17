@@ -15,6 +15,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import SectionSeparator from "./SectionSeparator";
 
 export default function Hero() {
   const router = useRouter();
@@ -290,13 +291,16 @@ export default function Hero() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "150px",
-          background:
-            "linear-gradient(to top, white 0%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0.5) 75%, transparent 100%)",
           zIndex: 2,
-          pointerEvents: "none",
         }}
-      />
+      >
+        <SectionSeparator
+          color="#004AAD"
+          glowColor="rgba(0, 74, 173, 0.6)"
+          marginBottom={0}
+          marginTop={0}
+        />
+      </div>
     </div>
   );
 }
