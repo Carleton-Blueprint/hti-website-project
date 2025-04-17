@@ -20,6 +20,7 @@ import {
   IconHeartHandshake,
 } from "@tabler/icons-react";
 import styles from "./styles.module.css";
+import SectionSeparator from "../components/SectionSeparator";
 
 const resources = [
   {
@@ -200,7 +201,9 @@ export function Resources() {
     <>
       <ParallaxBackground />
       <ResourceHero />
-
+      <Container size="lg">
+        <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" marginBottom={0} />
+      </Container>
       <Box
         py={80}
         style={{
@@ -257,8 +260,9 @@ export function Resources() {
                     top: 0,
                     left: 0,
                     right: 0,
-                    height: "6px",
-                    background: "linear-gradient(90deg, #004AAD, #FF914D)",
+                    height: "4px",
+                    background: "#004AAD",
+                    boxShadow: "0 0 10px rgba(0, 74, 173, 0.6), 0 0 20px rgba(0, 74, 173, 0.6)",
                   }}
                 />
 

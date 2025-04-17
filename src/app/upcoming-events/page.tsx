@@ -26,6 +26,7 @@ import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import events from "./eventData";
+import SectionSeparator from "../components/SectionSeparator";
 
 function ParallaxBackground() {
   return (
@@ -587,16 +588,20 @@ function AllEvents() {
 
 function RegisterCTA() {
   return (
-    <Box
-      component="section"
-      py={80}
-      style={{
-        position: "relative",
-        background: "linear-gradient(135deg, #004AAD 0%, #002255 100%)",
-        marginTop: "60px",
-        borderRadius: "60px 60px 0 0",
-      }}
-    >
+    <>
+      <Container size="lg">
+        <SectionSeparator color="#FF914D" glowColor="rgba(255, 145, 77, 0.6)" marginBottom={0} />
+      </Container>
+      <Box
+        component="section"
+        py={80}
+        style={{
+          position: "relative",
+          background: "linear-gradient(135deg, #004AAD 0%, #002255 100%)",
+          marginTop: "0",
+          borderRadius: "0",
+        }}
+      >
       <Box
         style={{
           position: "absolute",
@@ -606,7 +611,7 @@ function RegisterCTA() {
           left: 0,
           background:
             "radial-gradient(circle at 20% 150%, rgba(255, 145, 77, 0.25) 0%, transparent 60%), radial-gradient(circle at 80% -20%, rgba(255, 255, 255, 0.15) 0%, transparent 40%)",
-          borderRadius: "60px 60px 0 0",
+          borderRadius: "0",
           zIndex: 0,
         }}
       />
@@ -688,6 +693,7 @@ function RegisterCTA() {
         </motion.div>
       </Container>
     </Box>
+    </>
   );
 }
 
@@ -709,13 +715,9 @@ export default function UpcomingEvents() {
         <EventsHero />
         <EventFilters />
         <FeaturedEvents />
-        <div
-          style={{
-            height: "1px",
-            background: "rgba(0, 74, 173, 0.15)",
-            margin: "0 100px",
-          }}
-        ></div>
+        <Container size="lg">
+          <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
+        </Container>
         <AllEvents />
         <RegisterCTA />
       </div>

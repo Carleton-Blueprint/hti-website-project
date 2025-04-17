@@ -24,6 +24,7 @@ import {
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import CallToAction from "./components/CallToAction";
+import SectionSeparator from "./components/SectionSeparator";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
@@ -655,21 +656,13 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Features />
-        <div
-          style={{
-            height: "1px",
-            background: "rgba(0, 74, 173, 0.15)",
-            margin: "0 100px",
-          }}
-        ></div>
+        <Container size="lg">
+          <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
+        </Container>
         <Mission />
-        <div
-          style={{
-            height: "1px",
-            background: "rgba(0, 74, 173, 0.15)",
-            margin: "0 100px",
-          }}
-        ></div>
+        <Container size="lg">
+          <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
+        </Container>
         <LatestEvents />
         <CallToAction />
       </div>

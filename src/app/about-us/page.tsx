@@ -22,6 +22,7 @@ import {
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import SectionSeparator from "../components/SectionSeparator";
 
 function ParallaxBackground() {
   return (
@@ -547,20 +548,23 @@ function AboutHero() {
         </Grid>
       </Container>
 
-      {/* Bottom gradient transition */}
+      {/* Hard cutoff with glowing bar instead of gradient transition */}
       <div
         style={{
           position: "absolute",
           bottom: 0,
           left: 0,
           right: 0,
-          height: "180px",
-          background:
-            "linear-gradient(to top, white 0%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0.5) 75%, transparent 100%)",
           zIndex: 2,
-          pointerEvents: "none",
         }}
-      />
+      >
+        <SectionSeparator
+          color="#FF914D"
+          glowColor="rgba(255, 145, 77, 0.6)"
+          marginBottom={0}
+          marginTop={0}
+        />
+      </div>
     </Box>
   );
 }
@@ -1222,13 +1226,9 @@ export default function AboutUs() {
         <Navbar />
         <AboutHero />
         <MissionVision />
-        <div
-          style={{
-            height: "1px",
-            background: "rgba(0, 74, 173, 0.15)",
-            margin: "0 100px",
-          }}
-        ></div>
+        <Container size="lg">
+          <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
+        </Container>
         <CoreValues />
         <Audience />
       </div>
