@@ -44,7 +44,7 @@ const Navbar = () => {
             <Link href="/">
               <Group gap={12} align="center">
                 <Image
-                  src="/logo.png"
+                  src="/Logo-white.png"
                   alt="Health Tech Innovators Logo"
                   width={35} // Set fixed smaller width
                   height={35} // Set fixed smaller height
