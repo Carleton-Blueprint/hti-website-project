@@ -10,14 +10,12 @@ import {
   Box,
   SimpleGrid,
   Image,
-  Button,
-  TextInput,
 } from "@mantine/core";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import { getAllPosts } from "./postMock";
 import { useState } from "react";
-import { IconSearch, IconFilter, IconCalendar } from "@tabler/icons-react";
+import { IconCalendar } from "@tabler/icons-react";
 import styles from "./styles.module.css";
 import { SearchFilter } from "./SearchFilter";
 

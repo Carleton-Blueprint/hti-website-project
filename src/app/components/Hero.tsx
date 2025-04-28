@@ -22,7 +22,7 @@ export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
-    target: heroRef as any,
+    target: heroRef,
     offset: ["start start", "end start"],
   });
 

@@ -77,6 +77,7 @@ export default function RootLayout({
     <html lang="en" {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript defaultColorScheme="light" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

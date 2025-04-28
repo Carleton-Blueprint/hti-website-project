@@ -50,7 +50,7 @@ export default function TestPage() {
         <h2>Test Links with Regular Anchor Tags:</h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li style={{ marginBottom: "10px" }}>
-            <a
+            <Link
               href="/upcoming-events/healthcare-innovation-summit/"
               style={{
                 color: "purple",
@@ -62,10 +62,10 @@ export default function TestPage() {
               }}
             >
               Healthcare Innovation Summit - Anchor Tag
-            </a>
+            </Link>
           </li>
           <li style={{ marginBottom: "10px" }}>
-            <a
+            <Link
               href="/upcoming-events/digital-health-workshop/"
               style={{
                 color: "orange",
@@ -77,7 +77,7 @@ export default function TestPage() {
               }}
             >
               Digital Health Workshop - Anchor Tag
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

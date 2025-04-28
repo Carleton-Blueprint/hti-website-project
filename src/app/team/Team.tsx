@@ -11,7 +11,6 @@ import {
   Group,
   Badge,
 } from "@mantine/core";
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import styles from "./styles.module.css";
 
@@ -66,11 +65,6 @@ const teamMembers = [
     specialties: ["Health IT", "Entrepreneurship"],
   },
 ];
-
-const floatingAnimation = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
 
 function ParallaxBackground() {
   return (
