@@ -12,9 +12,10 @@ import {
   Box,
   Badge,
 } from "@mantine/core";
-import { getAllPosts } from "../postMock";
 import { useEffect, useState } from "react";
-import { BlogPost } from "../BlogPost";
+import { BlogPost, getBlogPostBySlug } from "@/contentful/queries/blogPost";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 import Navbar from "../../components/Navbar";
 import { useParams } from "next/navigation";
 import { IconCalendar, IconUser, IconArrowLeft } from "@tabler/icons-react";
@@ -41,16 +42,23 @@ function ParallaxBackground() {
 
 export default function BlogPostPage() {
   const searchParams = useParams();
-  const slug = searchParams.slug;
+  const slug = Array.isArray(searchParams.slug)
+    ? searchParams.slug[0]
+    : searchParams.slug;
   const [post, setPost] = useState<BlogPost | null>(null);
+  const [postRichText, setPostRichText] = useState<Document | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (slug) {
-      const posts = getAllPosts();
-      const foundPost = posts.find((p) => p.slug === slug);
-      setPost(foundPost || null);
-      setLoading(false);
+      const fetchPost = async () => {
+        const foundPost = await getBlogPostBySlug(slug);
+        setPost(foundPost);
+        setPostRichText(foundPost.content || null);
+        setLoading(false);
+      };
+
+      fetchPost();
     }
   }, [slug]);
 
@@ -251,18 +259,29 @@ export default function BlogPostPage() {
             }}
           >
             <div className={styles["blog-post-content"]}>
-              {post.content.split("\n").map((paragraph, index) => (
-                <Text
-                  key={index}
-                  style={{
-                    marginBottom: "1.5rem",
-                    lineHeight: 1.8,
-                    color: "#333",
-                  }}
-                >
-                  {paragraph}
-                </Text>
-              ))}
+              {documentToReactComponents(postRichText! as any, {
+                renderNode: {
+                  [BLOCKS.PARAGRAPH]: (node, children) => (
+                    <Text
+                      style={{
+                        marginBottom: "1.5rem",
+                        fontSize: "1.1rem",
+                        lineHeight: "1.8",
+                        color: "#333",
+                      }}
+                    >
+                      {children}
+                    </Text>
+                  ),
+                },
+                renderText: (text) => {
+                  return text
+                    .split("\n")
+                    .flatMap((segment, i, arr) =>
+                      i < arr.length - 1 ? [segment, <br key={i} />] : [segment]
+                    );
+                },
+              })}
             </div>
           </Paper>
         </Container>

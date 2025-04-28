@@ -1,10 +1,31 @@
 "use client";
 
-import { Container, Title, Box, Button } from "@mantine/core"; // Add Button import
+import { Container, Title, Button } from "@mantine/core"; // Add Button import
 import Navbar from "../components/Navbar";
-import { IconExternalLink } from '@tabler/icons-react'; // Import icon for the button
+import { IconExternalLink } from "@tabler/icons-react"; // Import icon for the button
+import { useEffect, useState } from "react";
+import { getLinktreeLink } from "@/contentful/queries/linktree";
 
 export default function ContactUs() {
+  const [linktreeLink, setLinktreeLink] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchLink() {
+      try {
+        const link = await getLinktreeLink();
+        setLinktreeLink(link);
+      } catch (error) {
+        console.error("Failed to load Linktree link:", error);
+      }
+    }
+
+    fetchLink();
+  }, []);
+
+  if (!linktreeLink) {
+    return null; // or return <Loader /> if you want
+  }
+
   return (
     <main
       className="grid-bg"
@@ -55,14 +76,14 @@ export default function ContactUs() {
 
           <Button
             component="a"
-            href="https://linktr.ee/healthtechinnovators"
+            href={linktreeLink}
             target="_blank" // Open in new tab
             rel="noopener noreferrer" // Security best practice for target="_blank"
             size="lg"
             variant="gradient"
-            gradient={{ from: 'blue', to: 'cyan' }}
+            gradient={{ from: "blue", to: "cyan" }}
             leftSection={<IconExternalLink size={20} />}
-            style={{ marginTop: '2rem' }} // Add some space above the button
+            style={{ marginTop: "2rem" }} // Add some space above the button
           >
             Visit our Linktree
           </Button>

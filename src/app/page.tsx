@@ -25,7 +25,15 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SectionSeparator from "./components/SectionSeparator";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import {
+  MissionVisionFields,
+  HomePage,
+  getMissionVisionContent,
+  getHomePageContent,
+} from "@/contentful/queries/home";
+import { Event, getLatestEvents } from "@/contentful/queries/event"
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 
 function ParallaxBackground() {
   return (
@@ -90,8 +98,53 @@ function ParallaxBackground() {
   );
 }
 
-function Features() {
+function Features({
+  whatWeDoTitle,
+  whatWeDoDescription,
+  whatWeDoBox1Title,
+  whatWeDoBox1Description,
+  whatWeDoBox2Title,
+  whatWeDoBox2Description,
+  whatWeDoBox3Title,
+  whatWeDoBox3Description,
+  whatWeDoBox4Title,
+  whatWeDoBox4Description,
+}: {
+  whatWeDoTitle: string;
+  whatWeDoDescription: string;
+  whatWeDoBox1Title: string;
+  whatWeDoBox1Description: string;
+  whatWeDoBox2Title: string;
+  whatWeDoBox2Description: string;
+  whatWeDoBox3Title: string;
+  whatWeDoBox3Description: string;
+  whatWeDoBox4Title: string;
+  whatWeDoBox4Description: string;
+}) {
   const featuresRef = useRef<HTMLDivElement>(null);
+
+  const features = [
+    {
+      Icon: IconHeartHandshake,
+      title: whatWeDoBox1Title,
+      description: whatWeDoBox1Description
+    },
+    {
+      Icon: IconBrain,
+      title: whatWeDoBox2Title,
+      description: whatWeDoBox2Description
+    },
+    {
+      Icon: IconUsers,
+      title: whatWeDoBox3Title,
+      description:whatWeDoBox3Description,
+    },
+    {
+      Icon: IconDeviceLaptop,
+      title: whatWeDoBox4Title,
+      description: whatWeDoBox4Description,
+    },
+  ];
 
   return (
     <Box
@@ -127,7 +180,7 @@ function Features() {
               What We Do
             </Text>
             <Title order={2} size="3rem" fw={800} style={{ color: "#004AAD" }}>
-              Empowering Student Innovation
+              {whatWeDoTitle}
             </Title>
             <Text
               size="xl"
@@ -137,8 +190,7 @@ function Features() {
                 margin: "1.5rem auto 0",
               }}
             >
-              We provide a platform for students to explore cutting-edge trends
-              in digital health solutions, medical devices, and AI in healthcare
+              {whatWeDoDescription}
             </Text>
           </Box>
         </motion.div>
@@ -213,34 +265,19 @@ function Features() {
   );
 }
 
-const features = [
-  {
-    Icon: IconHeartHandshake,
-    title: "Healthcare Impact",
-    description:
-      "Create meaningful change in healthcare through innovative technological solutions and real-world projects.",
-  },
-  {
-    Icon: IconBrain,
-    title: "Innovation Hub",
-    description:
-      "Access cutting-edge resources and collaborate on groundbreaking health tech projects with your peers.",
-  },
-  {
-    Icon: IconUsers,
-    title: "Community",
-    description:
-      "Connect with like-minded individuals passionate about transforming healthcare through technology.",
-  },
-  {
-    Icon: IconDeviceLaptop,
-    title: "Hands-on Learning",
-    description:
-      "Gain practical experience through workshops, hackathons, and mentorship from industry professionals.",
-  },
-];
-
-function Mission() {
+function Mission({
+  whoWeAreDescription,
+  whoWeAreOurMissionTitle,
+  whoWeAreOurMissionDescription,
+  whoWeAreOurVisionTitle,
+  whoWeAreOurVisionDescription,
+}: {
+  whoWeAreDescription: string;
+  whoWeAreOurMissionTitle: string;
+  whoWeAreOurMissionDescription: string;
+  whoWeAreOurVisionTitle: string;
+  whoWeAreOurVisionDescription: string;
+}) {
   const missionRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -288,8 +325,7 @@ function Mission() {
                 margin: "1.5rem auto 0",
               }}
             >
-              The Health Tech Innovators Club is a vibrant community of students
-              committed to advancing healthcare through technology
+              {whoWeAreDescription}
             </Text>
           </Box>
         </motion.div>
@@ -345,18 +381,13 @@ function Mission() {
                     lineHeight: 1.4,
                   }}
                 >
-                  Transforming Healthcare Through Student Innovation
+                  {whoWeAreOurMissionTitle}
                 </Text>
                 <Text
                   size="md"
                   style={{ color: "#2D3748", lineHeight: 1.7, flex: 1 }}
                 >
-                  The Health Tech Innovators Club fosters innovation, inspires
-                  creativity, and drives progress in the health tech industry.
-                  We provide a collaborative platform where members share ideas,
-                  connect with professionals, learn about the latest trends, and
-                  work on projects that improve healthcare outcomes and enhance
-                  patient experiences.
+                  {whoWeAreOurMissionDescription}
                 </Text>
               </Card>
             </motion.div>
@@ -411,18 +442,13 @@ function Mission() {
                     lineHeight: 1.4,
                   }}
                 >
-                  Leading the Future of Healthcare Technology
+                  {whoWeAreOurVisionTitle}
                 </Text>
                 <Text
                   size="md"
                   style={{ color: "#2D3748", lineHeight: 1.7, flex: 1 }}
                 >
-                  We envision a community of health tech enthusiasts,
-                  innovators, and professionals at the forefront of transforming
-                  healthcare through technology. Our club empowers members by
-                  offering opportunities to engage with industry leaders,
-                  collaborate on cutting-edge projects, and influence the future
-                  of healthcare.
+                  {whoWeAreOurVisionDescription}
                 </Text>
               </Card>
             </motion.div>
@@ -433,37 +459,7 @@ function Mission() {
   );
 }
 
-const events = [
-  {
-    title: "Healthcare Innovation Summit",
-    date: "Feb 15, 2024",
-    time: "9:00 AM - 5:00 PM",
-    location: "Innovation Hub",
-    category: "Conference",
-    description:
-      "Join us for a day of inspiring talks and discussions about the future of healthcare technology.",
-  },
-  {
-    title: "Digital Health Workshop",
-    date: "Feb 28, 2024",
-    time: "2:00 PM - 4:00 PM",
-    location: "Tech Center",
-    category: "Workshop",
-    description:
-      "Learn hands-on skills in digital health technologies and their practical applications.",
-  },
-  {
-    title: "MedTech Networking Event",
-    date: "Mar 10, 2024",
-    time: "6:00 PM - 8:30 PM",
-    location: "Innovation Lab",
-    category: "Networking",
-    description:
-      "Connect with fellow healthcare tech enthusiasts and industry professionals.",
-  },
-];
-
-function LatestEvents() {
+function LatestEvents({ events }: {events : Event[]}) {
   const eventsRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -595,7 +591,7 @@ function LatestEvents() {
                         marginBottom: "1.5rem",
                       }}
                     >
-                      {event.description}
+                      {documentToPlainTextString(event.description)}
                     </Text>
                   </div>
 
@@ -632,6 +628,31 @@ function LatestEvents() {
 }
 
 export default function Home() {
+  const [missionVision, setMissionVision] = useState<MissionVisionFields | null>(null);
+  const [homeContent, setHomeContent] = useState<HomePage | null>(null);
+  const [latestEvents, setLatestEvents] = useState<Event[] | null>(null);
+
+  useEffect(() => {
+    async function fetchContent() {
+      try {
+        const data = await getMissionVisionContent();
+        const homeData = await getHomePageContent();
+        const eventData = await getLatestEvents(3);
+
+        setMissionVision(data);
+        setHomeContent(homeData);
+        setLatestEvents(eventData);
+      } catch (error) {
+        console.error("Failed to load Mission and Vision content:", error);
+      }
+    }
+    fetchContent();
+  }, []);
+
+  if (!missionVision || !homeContent || !latestEvents) {
+    return null;
+  }
+
   return (
     <main
       className="grid-bg"
@@ -654,15 +675,36 @@ export default function Home() {
       >
         <Navbar />
         <Hero />
-        <Features />
+        <Features
+          whatWeDoTitle={homeContent.whatWeDoTitle}
+          whatWeDoDescription={homeContent.whatWeDoDescription}
+          whatWeDoBox1Title={homeContent.whatWeDoBox1Title}
+          whatWeDoBox1Description={homeContent.whatWeDoBox1Description}
+          whatWeDoBox2Title={homeContent.whatWeDoBox2Title}
+          whatWeDoBox2Description={homeContent.whatWeDoBox2Description}
+          whatWeDoBox3Title={homeContent.whatWeDoBox3Title}
+          whatWeDoBox3Description={homeContent.whatWeDoBox3Description}
+          whatWeDoBox4Title={homeContent.whatWeDoBox4Title}
+          whatWeDoBox4Description={homeContent.whatWeDoBox4Description}
+        />
         <Container size="lg">
           <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
         </Container>
-        <Mission />
+        <Mission
+          whoWeAreDescription={missionVision.whoWeAreDescription}
+          whoWeAreOurMissionTitle={missionVision.whoWeAreOurMissionTitle}
+          whoWeAreOurMissionDescription={
+            missionVision.whoWeAreOurMissionDescription
+          }
+          whoWeAreOurVisionTitle={missionVision.whoWeAreOurVisionTitle}
+          whoWeAreOurVisionDescription={
+            missionVision.whoWeAreOurVisionDescription
+          }
+        />
         <Container size="lg">
           <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
         </Container>
-        <LatestEvents />
+        <LatestEvents events={latestEvents} />
       </div>
     </main>
   );

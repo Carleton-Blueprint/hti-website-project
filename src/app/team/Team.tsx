@@ -13,58 +13,9 @@ import {
 } from "@mantine/core";
 import { useRef } from "react";
 import styles from "./styles.module.css";
-
-const teamMembers = [
-  {
-    name: "Name1",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["AI", "Healthcare"],
-  },
-  {
-    name: "Name2",
-    title: "Role",
-    imageUrl: "/images/doctor2.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Data Science", "Medical Devices"],
-  },
-  {
-    name: "Name3",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Digital Health", "UX Design"],
-  },
-  {
-    name: "Name4",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Telemedicine", "Wearables"],
-  },
-  {
-    name: "Name5",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Health Policy", "Innovation"],
-  },
-  {
-    name: "Name6",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Biotechnology", "Research"],
-  },
-  {
-    name: "Name7",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Health IT", "Entrepreneurship"],
-  },
-];
+import { TeamMember, getAllTeamMembers } from "@/contentful/queries/team";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { useState, useEffect } from "react";
 
 function ParallaxBackground() {
   return (
@@ -173,7 +124,7 @@ function TeamHero() {
   );
 }
 
-function TeamMembers() {
+function TeamMembers({ members }: { members: TeamMember[] }) {
   const teamRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -218,7 +169,7 @@ function TeamMembers() {
           cols={{ base: 1, sm: 2, lg: 3 }}
           spacing={{ base: 30, sm: 40 }}
         >
-          {teamMembers.map((member, index) => (
+          {members.map((member, index) => (
             <div key={index}>
               <Card
                 padding="lg"
@@ -259,7 +210,7 @@ function TeamMembers() {
                     }}
                   >
                     <Image
-                      src={member.imageUrl}
+                      src={member.image}
                       alt={member.name}
                       style={{
                         width: "100%",
@@ -286,7 +237,7 @@ function TeamMembers() {
                       marginBottom: "1rem",
                     }}
                   >
-                    {member.title}
+                    {member.role}
                   </Text>
                 </Box>
 
@@ -299,11 +250,11 @@ function TeamMembers() {
                     flex: 1,
                   }}
                 >
-                  {member.bio}
+                  {documentToPlainTextString(member.bio)}
                 </Text>
 
                 <Group gap="xs" style={{ flexWrap: "wrap" }}>
-                  {member.specialties.map((specialty, i) => (
+                  {member.specialties?.map((specialty, i) => (
                     <Badge
                       key={i}
                       color="blue"
@@ -344,11 +295,23 @@ function TeamMembers() {
 }
 
 export function Team() {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  //const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchResources = async () => {
+      const data = await getAllTeamMembers();
+      setTeamMembers(data);
+    };
+
+    fetchResources();
+  }, []);
+
   return (
     <>
       <ParallaxBackground />
       <TeamHero />
-      <TeamMembers />
+      <TeamMembers members={teamMembers} />
     </>
   );
 }

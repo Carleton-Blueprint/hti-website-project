@@ -18,19 +18,12 @@ import {
   IconSchool,
   IconTargetArrow,
   IconNetwork,
-  IconStethoscope,
-  IconDna,
-  IconMicroscope,
-  IconHeartbeat,
-  IconBrain,
-  IconDeviceLaptop,
-  IconRobot,
-  IconVaccine,
 } from "@tabler/icons-react";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
-import { useRef } from "react";
 import SectionSeparator from "../components/SectionSeparator";
+import { useRef, useState, useEffect } from "react";
+import { AboutUsPage, getAboutUsPageContent } from "@/contentful/queries/about";
 
 function ParallaxBackground() {
   return (
@@ -95,7 +88,11 @@ function ParallaxBackground() {
   );
 }
 
-function AboutHero() {
+function AboutHero({
+  ourStoryDescription,
+}: {
+  ourStoryDescription: string | null;
+}) {
   return (
     <Box
       style={{
@@ -321,9 +318,7 @@ function AboutHero() {
                       textShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
                     }}
                   >
-                    A vibrant community of passionate students at Carleton
-                    University dedicated to transforming healthcare through
-                    cutting-edge technological solutions.
+                    {ourStoryDescription}
                   </Text>
                 </motion.div>
 
@@ -466,7 +461,19 @@ function AboutHero() {
   );
 }
 
-function MissionVision() {
+function MissionVision({
+  whoWeAreDescription,
+  whoWeAreOurMissionTitle,
+  whoWeAreOurMissionDescription,
+  whoWeAreOurVisionTitle,
+  whoWeAreOurVisionDescription,
+}: {
+  whoWeAreDescription: string;
+  whoWeAreOurMissionTitle: string;
+  whoWeAreOurMissionDescription: string;
+  whoWeAreOurVisionTitle: string;
+  whoWeAreOurVisionDescription: string;
+}) {
   const missionRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -514,8 +521,7 @@ function MissionVision() {
                 margin: "1.5rem auto 0",
               }}
             >
-              Driving innovation and fostering collaboration in the health tech
-              space at Carleton University
+              {whoWeAreDescription}
             </Text>
           </Box>
         </motion.div>
@@ -571,18 +577,13 @@ function MissionVision() {
                     lineHeight: 1.4,
                   }}
                 >
-                  Transforming Healthcare Through Student Innovation
+                  {whoWeAreOurMissionTitle}
                 </Text>
                 <Text
                   size="md"
                   style={{ color: "#2D3748", lineHeight: 1.7, flex: 1 }}
                 >
-                  The Health Tech Innovators Club fosters innovation, inspires
-                  creativity, and drives progress in the health tech industry.
-                  We provide a collaborative platform where members share ideas,
-                  connect with professionals, learn about the latest trends, and
-                  work on projects that improve healthcare outcomes and enhance
-                  patient experiences.
+                  {whoWeAreOurMissionDescription}
                 </Text>
               </Card>
             </motion.div>
@@ -637,18 +638,13 @@ function MissionVision() {
                     lineHeight: 1.4,
                   }}
                 >
-                  Leading the Future of Healthcare Technology
+                  {whoWeAreOurVisionTitle}
                 </Text>
                 <Text
                   size="md"
                   style={{ color: "#2D3748", lineHeight: 1.7, flex: 1 }}
                 >
-                  We envision a community of health tech enthusiasts,
-                  innovators, and professionals at the forefront of transforming
-                  healthcare through technology. Our club empowers members by
-                  offering opportunities to engage with industry leaders,
-                  collaborate on cutting-edge projects, and influence the future
-                  of healthcare.
+                  {whoWeAreOurVisionDescription}
                 </Text>
               </Card>
             </motion.div>
@@ -659,45 +655,67 @@ function MissionVision() {
   );
 }
 
-function CoreValues() {
+function CoreValues({
+  whatWeStandForDescription,
+  whatWeStandForValue1Title,
+  whatWeStandForValue1Description,
+  whatWeStandForValue2Title,
+  whatWeStandForValue2Description,
+  whatWeStandForValue3Title,
+  whatWeStandForValue3Description,
+  whatWeStandForValue4Title,
+  whatWeStandForValue4Description,
+  whatWeStandForValue5Title,
+  whatWeStandForValue5Description,
+  whatWeStandForValue6Title,
+  whatWeStandForValue6Description,
+}: {
+  whatWeStandForDescription: string;
+  whatWeStandForValue1Title: string;
+  whatWeStandForValue1Description: string;
+  whatWeStandForValue2Title: string;
+  whatWeStandForValue2Description: string;
+  whatWeStandForValue3Title: string;
+  whatWeStandForValue3Description: string;
+  whatWeStandForValue4Title: string;
+  whatWeStandForValue4Description: string;
+  whatWeStandForValue5Title: string;
+  whatWeStandForValue5Description: string;
+  whatWeStandForValue6Title: string;
+  whatWeStandForValue6Description: string;
+}) {
   const valuesRef = useRef<HTMLDivElement>(null);
 
   const values = [
     {
       icon: IconBulb,
-      title: "Innovation",
-      description:
-        "Encouraging creativity and bold thinking in health tech solutions that address real-world healthcare challenges.",
+      title: whatWeStandForValue1Title,
+      description: whatWeStandForValue1Description,
     },
     {
       icon: IconUsers,
-      title: "Collaboration",
-      description:
-        "Valuing collective knowledge, teamwork, and inclusivity to create better solutions through diverse perspectives.",
+      title: whatWeStandForValue2Title,
+      description: whatWeStandForValue2Description,
     },
     {
       icon: IconSchool,
-      title: "Education",
-      description:
-        "Prioritizing learning and growth through resources, workshops, and events that expand knowledge in health technology.",
+      title: whatWeStandForValue3Title,
+      description: whatWeStandForValue3Description,
     },
     {
       icon: IconTargetArrow,
-      title: "Impact",
-      description:
-        "Making a tangible difference by developing solutions that enhance patient care and improve healthcare outcomes.",
+      title: whatWeStandForValue4Title,
+      description: whatWeStandForValue4Description,
     },
     {
       icon: IconNetwork,
-      title: "Networking",
-      description:
-        "Connecting like-minded individuals for meaningful professional relationships that foster growth and opportunity.",
+      title: whatWeStandForValue5Title,
+      description: whatWeStandForValue5Description,
     },
     {
       icon: IconHeartHandshake,
-      title: "Community",
-      description:
-        "Building a supportive environment where members feel valued, inspired, and empowered to pursue their health tech interests.",
+      title: whatWeStandForValue6Title,
+      description: whatWeStandForValue6Description,
     },
   ];
 
@@ -745,8 +763,7 @@ function CoreValues() {
                 margin: "1.5rem auto 0",
               }}
             >
-              The principles that guide our community and shape our approach to
-              health tech innovation
+              {whatWeStandForDescription}
             </Text>
           </Box>
         </motion.div>
@@ -821,7 +838,25 @@ function CoreValues() {
   );
 }
 
-function Audience() {
+function Audience({
+  ourCommunityDescription,
+  ourCommunityBox1Title,
+  ourCommunityBox1Description,
+  ourCommunityBox2Title,
+  ourCommunityBox2Description,
+  ourCommunityBox3Title,
+  ourCommunityBox3Description,
+  traits,
+}: {
+  ourCommunityDescription: string | null;
+  ourCommunityBox1Title: string | null;
+  ourCommunityBox1Description: string | null;
+  ourCommunityBox2Title: string | null;
+  ourCommunityBox2Description: string | null;
+  ourCommunityBox3Title: string | null;
+  ourCommunityBox3Description: string | null;
+  traits: string[];
+}) {
   return (
     <Box
       component="section"
@@ -874,9 +909,7 @@ function Audience() {
                     marginBottom: "2rem",
                   }}
                 >
-                  Health Tech Innovators serves a diverse community of
-                  individuals passionate about leveraging technology to innovate
-                  and improve healthcare:
+                  {ourCommunityDescription}
                 </Text>
 
                 <Card
@@ -907,12 +940,10 @@ function Audience() {
                         size="lg"
                         style={{ color: "#1A365D", marginBottom: "0.5rem" }}
                       >
-                        Health Tech Enthusiasts
+                        {ourCommunityBox1Title}
                       </Text>
                       <Text style={{ color: "#2D3748" }}>
-                        Students interested in exploring the intersection of
-                        healthcare and technology, regardless of their academic
-                        background.
+                        {ourCommunityBox1Description}
                       </Text>
                     </Box>
                   </Group>
@@ -946,11 +977,10 @@ function Audience() {
                         size="lg"
                         style={{ color: "#1A365D", marginBottom: "0.5rem" }}
                       >
-                        Innovators & Entrepreneurs
+                        {ourCommunityBox2Title}
                       </Text>
                       <Text style={{ color: "#2D3748" }}>
-                        Those looking to develop new solutions and ventures in
-                        the healthcare technology space.
+                        {ourCommunityBox2Description}
                       </Text>
                     </Box>
                   </Group>
@@ -979,12 +1009,10 @@ function Audience() {
                         size="lg"
                         style={{ color: "#1A365D", marginBottom: "0.5rem" }}
                       >
-                        Collaborators & Networkers
+                        {ourCommunityBox3Title}
                       </Text>
                       <Text style={{ color: "#2D3748" }}>
-                        Students seeking to connect with like-minded peers and
-                        industry professionals for meaningful collaborations and
-                        career opportunities.
+                        {ourCommunityBox3Description}
                       </Text>
                     </Box>
                   </Group>
@@ -1055,16 +1083,7 @@ function Audience() {
                     </Text>
 
                     <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={15}>
-                      {[
-                        "Forward-thinking",
-                        "Dynamic",
-                        "Community-oriented",
-                        "Professional",
-                        "Approachable",
-                        "Inspiring",
-                        "Informative",
-                        "Inclusive",
-                      ].map((trait, index) => (
+                      {traits.map((trait, index) => (
                         <motion.div
                           key={trait}
                           initial={{ opacity: 0, y: 10 }}
@@ -1107,6 +1126,24 @@ function Audience() {
 }
 
 export default function AboutUs() {
+  const [content, setContent] = useState<AboutUsPage | null>(null);
+
+  useEffect(() => {
+    async function fetchContent() {
+      try {
+        const data = await getAboutUsPageContent();
+        setContent(data);
+      } catch (error) {
+        console.error("Failed to load About Us content:", error);
+      }
+    }
+    fetchContent();
+  }, []);
+
+  if (!content) {
+    return null;
+  }
+
   return (
     <main
       className="grid-bg"
@@ -1121,13 +1158,55 @@ export default function AboutUs() {
 
       <div style={{ position: "relative", zIndex: 1 }}>
         <Navbar />
-        <AboutHero />
-        <MissionVision />
+        <AboutHero ourStoryDescription={content!.ourStoryDescription} />
+        <MissionVision
+          whoWeAreDescription={content.whoWeAreDescription}
+          whoWeAreOurMissionTitle={content.whoWeAreOurMissionTitle}
+          whoWeAreOurMissionDescription={content.whoWeAreOurMissionDescription}
+          whoWeAreOurVisionTitle={content.whoWeAreOurVisionTitle}
+          whoWeAreOurVisionDescription={content.whoWeAreOurVisionDescription}
+        />
         <Container size="lg">
           <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
         </Container>
-        <CoreValues />
-        <Audience />
+        <CoreValues
+          whatWeStandForDescription={content.whatWeStandForDescription}
+          whatWeStandForValue1Title={content.whatWeStandForValue1Title}
+          whatWeStandForValue1Description={
+            content.whatWeStandForValue1Description
+          }
+          whatWeStandForValue2Title={content.whatWeStandForValue2Title}
+          whatWeStandForValue2Description={
+            content.whatWeStandForValue2Description
+          }
+          whatWeStandForValue3Title={content.whatWeStandForValue3Title}
+          whatWeStandForValue3Description={
+            content.whatWeStandForValue3Description
+          }
+          whatWeStandForValue4Title={content.whatWeStandForValue4Title}
+          whatWeStandForValue4Description={
+            content.whatWeStandForValue4Description
+          }
+          whatWeStandForValue5Title={content.whatWeStandForValue5Title}
+          whatWeStandForValue5Description={
+            content.whatWeStandForValue5Description
+          }
+          whatWeStandForValue6Title={content.whatWeStandForValue6Title}
+          whatWeStandForValue6Description={
+            content.whatWeStandForValue6Description
+          }
+        />
+
+        <Audience
+          ourCommunityDescription={content!.ourCommunityDescription}
+          ourCommunityBox1Title={content!.ourCommunityBox1Title}
+          ourCommunityBox1Description={content!.ourCommunityBox1Description}
+          ourCommunityBox2Title={content!.ourCommunityBox2Title}
+          ourCommunityBox2Description={content!.ourCommunityBox2Description}
+          ourCommunityBox3Title={content!.ourCommunityBox3Title}
+          ourCommunityBox3Description={content!.ourCommunityBox3Description}
+          traits={content!.ourCommunityBrandPersonalityTraits}
+        />
       </div>
     </main>
   );

@@ -2,8 +2,24 @@
 
 import { Container, Title, Text, Box } from "@mantine/core";
 import Navbar from "../components/Navbar";
+import {
+  SignUpPageContent,
+  getSignUpPageContent,
+} from "@/contentful/queries/sign-up";
+import { useState, useEffect } from "react";
 
 export default function SignUp() {
+  const [data, setData] = useState<SignUpPageContent | null>(null);
+
+  useEffect(() => {
+    const load = async () => {
+      const res = await getSignUpPageContent();
+      setData(res);
+    };
+
+    load();
+  }, []);
+
   return (
     <main>
       <Navbar />
@@ -17,7 +33,7 @@ export default function SignUp() {
       >
         <Container size="lg">
           <Title order={1} ta="center" mb="sm" style={{ color: "#004AAD" }}>
-            Join Health Tech Innovators
+            {data?.title}
           </Title>
           <Text
             size="lg"
@@ -27,8 +43,7 @@ export default function SignUp() {
             mx="auto"
             style={{ color: "#4A5568" }}
           >
-            Fill out the form below to become a member and get access to
-            exclusive events, resources, and networking opportunities.
+            {data?.description}
           </Text>
 
           <Box
@@ -42,7 +57,7 @@ export default function SignUp() {
             }}
           >
             <iframe
-              src="https://docs.google.com/forms/d/1PGCbPxu2vddxVkTveh428_vzBEd8zbtA9pGgg0C7mrQ/viewform?edit_requested=true"
+              src={data?.formLink}
               style={{
                 width: "100%",
                 height: "800px",
