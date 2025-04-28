@@ -6,13 +6,24 @@
   --background: #ffffff;
   --foreground: #171717;
   --styrene-a: 'Styrene A';
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --primary-color: #004AAD;
+  --secondary-color: #FF914D;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --glass-bg: rgba(10, 10, 10, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 * {
@@ -26,4 +37,113 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--styrene-a), sans-serif;
+  overflow-x: hidden;
+}
+
+p, h1, h2, h3, h4, h5, h6, span, a, div {
+  color: var(--text-primary);
+}
+
+.grid-bg {
+  background-color: white;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.grid-bg::before {
+  content: "";
+  position: fixed;
+  inset: -200%;
+  background-image:
+    linear-gradient(rgba(0, 74, 173, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 74, 173, 0.1) 1px, transparent 1px);
+  background-size: 75px 75px;
+  transform: rotate(30deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glassmorphism {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.shape-1 {
+  background: rgba(0, 74, 173, 0.3);
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -150px;
+}
+
+.shape-2 {
+  background: rgba(255, 145, 77, 0.3);
+  width: 300px;
+  height: 300px;
+  top: 30%;
+  right: -100px;
+}
+
+.shape-3 {
+  background: rgba(0, 102, 255, 0.2);
+  width: 350px;
+  height: 350px;
+  bottom: 10%;
+  left: 10%;
+}
+
+.shape-4 {
+  background: rgba(255, 179, 138, 0.25);
+  width: 250px;
+  height: 250px;
+  top: 60%;
+  right: 15%;
+}
+
+.hero-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+  transition: all 0.5s ease;
+}
+
+.hero-image:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hero-image:hover img {
+  transform: scale(1.05);
 }
