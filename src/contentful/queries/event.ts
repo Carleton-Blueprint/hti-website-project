@@ -15,18 +15,18 @@ export interface Event {
   speakers?: string[];
   isFeatured: boolean;
   image: string;
-  agenda?: {
+  agenda?: [{
     time: string;
     title: string;
     description: string;
-  };
+  }];
   requirements?: string[];
   organizers?: string[];
   sponsors?: string[];
-  faqs?: {
+  faqs?: [{
     question: string;
     answer: string;
-  };
+  }];
 }
 
 export function formatDate(iso: string): string {

@@ -26,73 +26,6 @@ import { Resource, getAllResources } from "@/contentful/queries/resource";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { useState, useEffect } from "react";
 
-const resources = [
-  {
-    name: "Grant Writing Tips",
-    category: "Tips & Tricks",
-    description:
-      "Learn how to write compelling proposals for healthcare technology projects. Our guide covers best practices, common pitfalls, and strategies for success.",
-    link: "https://example.com/grant",
-    icon: IconBulb,
-  },
-  {
-    name: "Health Tech Scholarships",
-    category: "Scholarship",
-    description:
-      "Merit-based scholarships for students pursuing healthcare technology and innovation studies. Find opportunities to fund your education in this growing field.",
-    link: "https://example.com/scholarship",
-    icon: IconSchool,
-  },
-  {
-    name: "Summer Research Programs",
-    category: "Research Opportunity",
-    description:
-      "10-week summer research programs in healthcare technology at leading institutions. Gain hands-on experience working alongside industry experts.",
-    link: "https://example.com/summer",
-    icon: IconMicroscope,
-  },
-  {
-    name: "Startup Funding",
-    category: "Funds",
-    description:
-      "Funding opportunities for student-led healthcare technology projects and startups. Connect with investors who are passionate about health innovation.",
-    link: "https://example.com/fund",
-    icon: IconCoin,
-  },
-  {
-    name: "Online Courses",
-    category: "Education",
-    description:
-      "Free and premium online courses covering various aspects of health technology, from AI in healthcare to medical device development.",
-    link: "https://example.com/courses",
-    icon: IconDeviceLaptop,
-  },
-  {
-    name: "Internship Opportunities",
-    category: "Career",
-    description:
-      "Discover internship opportunities with leading health tech companies and healthcare organizations looking for innovative talent.",
-    link: "https://example.com/internships",
-    icon: IconBriefcase,
-  },
-  {
-    name: "Recommended Reading",
-    category: "Learning",
-    description:
-      "A curated list of books, articles, and research papers that every health tech enthusiast should read to stay informed about the latest trends.",
-    link: "https://example.com/reading",
-    icon: IconBookmark,
-  },
-  {
-    name: "Mentorship Program",
-    category: "Networking",
-    description:
-      "Connect with experienced professionals in the health tech industry who can provide guidance, advice, and support for your career journey.",
-    link: "https://example.com/mentorship",
-    icon: IconHeartHandshake,
-  },
-];
-
 export function getCategoryIcon(category: string) {
   switch (category) {
     case "Tips & Tricks":
@@ -224,8 +157,8 @@ function ResourceHero() {
 }
 
 export function Resources() {
-  const [resources, setResources] = useState<Resource[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [resources, setResources] = useState<Resource[] | any>([]);
+  //const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -234,7 +167,7 @@ export function Resources() {
         ...item,
         icon: getCategoryIcon(item.category),
       }));
-      setResources(data);
+      setResources(data as any);
     };
 
     fetchResources();
@@ -283,7 +216,7 @@ export function Resources() {
           </Text>
 
           <div className={styles["resource-grid"]}>
-            {resources.map((resource, index) => (
+            {resources.map((resource: any, index: any) => (
               <Card
                 key={index}
                 padding="xl"
@@ -311,7 +244,7 @@ export function Resources() {
 
                 <Group align="flex-start" mb="md" wrap="nowrap">
                   <div className={styles["resource-icon"]}>
-                    <resource.icon size={28} />
+                      <resource.icon size={28} />
                   </div>
                   <Text className={styles["resource-title"]}>
                     {resource.name}

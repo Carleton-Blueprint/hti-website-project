@@ -47,7 +47,7 @@ export async function getBlogPostBySlug(slug: string): Promise<any> {
       category: item.fields.category || null,
       excerpt: item.fields.excerpt,
       content: item.fields.content,
-      imageUrl: item.fields.image?.fields?.file?.url || '',
+      imageUrl: (item.fields.image as any).fields?.file?.url || '',
       slug: item.fields.id,
     };
   }

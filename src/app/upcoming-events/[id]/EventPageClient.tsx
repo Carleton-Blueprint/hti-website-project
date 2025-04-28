@@ -358,7 +358,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                           panel: { color: "#333", fontWeight: 500 },
                         }}
                       >
-                        {event.faqs.map((faq, index) => (
+                        {event.faqs.map((faq: any, index: any) => (
                           <Accordion.Item key={index} value={`item-${index}`}>
                             <Accordion.Control>
                               <Text fw={600}>{faq.question}</Text>

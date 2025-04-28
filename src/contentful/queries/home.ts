@@ -1,5 +1,4 @@
 import { client } from "../contentful";
-import { Event, formatDate, formatTime } from "./event";
 
 export type HomePage = {
     title: string;

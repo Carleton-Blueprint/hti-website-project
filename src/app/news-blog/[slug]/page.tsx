@@ -259,7 +259,7 @@ export default function BlogPostPage() {
             }}
           >
             <div className={styles["blog-post-content"]}>
-              {documentToReactComponents(postRichText, {
+              {documentToReactComponents(postRichText! as any, {
                 renderNode: {
                   [BLOCKS.PARAGRAPH]: (node, children) => (
                     <Text

@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Title, Box, Button } from "@mantine/core"; // Add Button import
+import { Container, Title, Button } from "@mantine/core"; // Add Button import
 import Navbar from "../components/Navbar";
 import { IconExternalLink } from "@tabler/icons-react"; // Import icon for the button
 import { useEffect, useState } from "react";

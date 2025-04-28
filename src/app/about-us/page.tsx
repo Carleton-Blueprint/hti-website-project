@@ -18,14 +18,6 @@ import {
   IconSchool,
   IconTargetArrow,
   IconNetwork,
-  IconStethoscope,
-  IconDna,
-  IconMicroscope,
-  IconHeartbeat,
-  IconBrain,
-  IconDeviceLaptop,
-  IconRobot,
-  IconVaccine,
 } from "@tabler/icons-react";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";

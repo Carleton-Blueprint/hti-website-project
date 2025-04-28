@@ -17,58 +17,6 @@ import { TeamMember, getAllTeamMembers } from "@/contentful/queries/team";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { useState, useEffect } from "react";
 
-const teamMembers = [
-  {
-    name: "Name1",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["AI", "Healthcare"],
-  },
-  {
-    name: "Name2",
-    title: "Role",
-    imageUrl: "/images/doctor2.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Data Science", "Medical Devices"],
-  },
-  {
-    name: "Name3",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Digital Health", "UX Design"],
-  },
-  {
-    name: "Name4",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Telemedicine", "Wearables"],
-  },
-  {
-    name: "Name5",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Health Policy", "Innovation"],
-  },
-  {
-    name: "Name6",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Biotechnology", "Research"],
-  },
-  {
-    name: "Name7",
-    title: "Role",
-    imageUrl: "/images/doctor1.jpg",
-    bio: "Bio description goes here. This person is passionate about health technology and innovation.",
-    specialties: ["Health IT", "Entrepreneurship"],
-  },
-];
-
 function ParallaxBackground() {
   return (
     <div className="parallax-bg">
@@ -306,7 +254,7 @@ function TeamMembers({ members }: { members: TeamMember[] }) {
                 </Text>
 
                 <Group gap="xs" style={{ flexWrap: "wrap" }}>
-                  {member.specialties.map((specialty, i) => (
+                  {member.specialties?.map((specialty, i) => (
                     <Badge
                       key={i}
                       color="blue"
