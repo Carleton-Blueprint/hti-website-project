@@ -348,7 +348,7 @@ function TeamMembers({ members }: { members: TeamMember[] }) {
 
 export function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchResources = async () => {
