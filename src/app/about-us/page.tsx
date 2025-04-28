@@ -18,6 +18,14 @@ import {
   IconSchool,
   IconTargetArrow,
   IconNetwork,
+  IconStethoscope,
+  IconDna,
+  IconMicroscope,
+  IconHeartbeat,
+  IconBrain,
+  IconDeviceLaptop,
+  IconRobot,
+  IconVaccine,
 } from "@tabler/icons-react";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
@@ -101,7 +109,6 @@ function AboutHero() {
         paddingBottom: "120px",
       }}
     >
-      {/* Background gradient overlays */}
       <Box
         style={{
           position: "absolute",
@@ -115,7 +122,6 @@ function AboutHero() {
         }}
       />
 
-      {/* Particle effect background - with fixed values instead of random */}
       <Box
         style={{
           position: "absolute",
@@ -155,7 +161,6 @@ function AboutHero() {
         ))}
       </Box>
 
-      {/* Decorative elements */}
       <Box
         style={{
           position: "absolute",
@@ -186,7 +191,6 @@ function AboutHero() {
         }}
       />
 
-      {/* Animated lines - simplified to just a few horizontal lines */}
       <motion.div
         style={{
           position: "absolute",
@@ -224,7 +228,6 @@ function AboutHero() {
         ))}
       </motion.div>
 
-      {/* Digital circuit pattern */}
       <Box
         style={{
           position: "absolute",
@@ -363,192 +366,86 @@ function AboutHero() {
             </motion.div>
           </Grid.Col>
 
-          <Grid.Col span={{ base: 12, md: 5 }}>
+          <Grid.Col span={{ base: 12, md: 5 }} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              style={{
+                position: "relative",
+                width: "300px",
+                height: "300px",
+              }}
             >
-              <Box
+              {/* Optional: Subtle background glow */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.03, 1],
+                  opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  borderRadius: "50%",
+                  background: "radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%)",
+                  filter: "blur(25px)",
+                  zIndex: 0,
+                }}
+              />
+              {/* Main Logo */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
                 style={{
                   position: "relative",
-                  height: "350px",
-                  width: "350px",
-                  margin: "0 auto",
-                  marginBottom: "60px", // Increased bottom margin to move it up
-                  marginTop: "-40px", // Added negative top margin to move it up
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 1,
                 }}
               >
-                {/* Outer glow */}
-                <motion.div
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    opacity: [0.5, 0.7, 0.5],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
+                <div
                   style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "300px",
-                    height: "300px",
+                    width: 200,
+                    height: 200,
                     borderRadius: "50%",
-                    background:
-                      "radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%)",
-                    filter: "blur(20px)",
-                    zIndex: 0,
-                  }}
-                />
-
-                {/* Single outer ring */}
-                <Box
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "280px",
-                    height: "280px",
-                    borderRadius: "50%",
-                    background: "rgba(255, 255, 255, 0.03)",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
-                    zIndex: 1,
-                    overflow: "hidden", // Contain all animations
-                  }}
-                />
-
-                {/* Inner ring with rotation */}
-                <motion.div
-                  animate={{
-                    rotate: 360,
-                  }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "200px",
-                    height: "200px",
-                    borderRadius: "50%",
-                    background:
-                      "linear-gradient(135deg, rgba(0, 74, 173, 0.4) 0%, rgba(0, 102, 255, 0.1) 100%)",
-                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                    zIndex: 3,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    overflow: "hidden",
+                    background: "rgba(255, 255, 255, 0.1)", // Semi-transparent white background
+                    backdropFilter: "blur(15px)", // Frosted glass effect
+                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 ), inset 0 0 10px rgba(255, 255, 255, 0.2)", // Outer shadow and inner highlight
+                    border: "1px solid rgba(255, 255, 255, 0.18)", // Subtle border
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                 >
-                  {/* Center icon with pulse effect */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.05, 1],
-                      boxShadow: [
-                        "0 0 30px rgba(0, 74, 173, 0.5)",
-                        "0 0 40px rgba(0, 74, 173, 0.7)",
-                        "0 0 30px rgba(0, 74, 173, 0.5)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                    }}
-                  >
-                    <ThemeIcon
-                      size={120}
-                      radius="xl"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #004AAD 0%, #0066FF 100%)",
-                        boxShadow: "0 0 30px rgba(0, 74, 173, 0.5)",
-                      }}
-                    >
-                      <IconHeartHandshake
-                        size={70}
-                        style={{ color: "white" }}
-                        stroke={1.5}
-                      />
-                    </ThemeIcon>
-                  </motion.div>
-                </motion.div>
-
-                {/* Orbiting elements - simplified and contained */}
-                {[0, 1, 2, 3].map((index) => (
-                  <motion.div
-                    key={index}
-                    animate={{
-                      rotate: 360,
-                    }}
-                    transition={{
-                      duration: 20 - index * 3,
-                      repeat: Infinity,
-                      ease: "linear",
-                      delay: index,
-                    }}
+                  <img
+                    src="/logo.png"
+                    alt="HTI Logo"
                     style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      width: "280px",
-                      height: "280px",
-                      borderRadius: "50%",
-                      transform: "translate(-50%, -50%)",
-                      zIndex: 4,
-                      overflow: "visible",
+                      width: "85%", // Slightly smaller logo inside the circle
+                      height: "85%",
+                      objectFit: "contain", // Use contain to ensure logo isn't cut off
                     }}
-                  >
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.8, 1, 0.8],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        delay: index * 0.5,
-                      }}
-                    >
-                      <Box
-                        style={{
-                          position: "absolute",
-                          top: `${index * 90}deg`,
-                          left: "50%",
-                          width: index % 2 === 0 ? "20px" : "16px",
-                          height: index % 2 === 0 ? "20px" : "16px",
-                          borderRadius: "50%",
-                          background:
-                            index % 2 === 0
-                              ? "linear-gradient(135deg, #FF914D 0%, #FFB38A 100%)"
-                              : "linear-gradient(135deg, #004AAD 0%, #0066FF 100%)",
-                          boxShadow:
-                            index % 2 === 0
-                              ? "0 0 15px rgba(255, 145, 77, 0.5)"
-                              : "0 0 15px rgba(0, 74, 173, 0.5)",
-                          transform: `rotate(${index * 90}deg) translate(140px) rotate(-${index * 90}deg)`,
-                        }}
-                      />
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </Box>
+                  />
+                </div>
+              </motion.div>
             </motion.div>
           </Grid.Col>
         </Grid>
       </Container>
 
-      {/* Hard cutoff with glowing bar instead of gradient transition */}
       <div
         style={{
           position: "absolute",
