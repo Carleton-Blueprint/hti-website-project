@@ -1,0 +1,74 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--mantine-color-blue-7) 0%, var(--mantine-color-blue-9) 100%);
+  padding: 80px 0;
+  margin-top: -80px; /* Adjust based on Navbar height */
+  padding-top: 160px; /* Adjust based on Navbar height + desired padding */
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.heroTitle {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--mantine-spacing-md);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.heroText {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--mantine-font-size-xl);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.formCard {
+  background-color: white;
+  border: 1px solid var(--mantine-color-gray-2);
+  box-shadow: var(--mantine-shadow-md);
+}
+
+.formTitle {
+  color: var(--mantine-color-blue-7);
+  font-weight: 700;
+}
+
+.submitButton {
+  background-color: var(--mantine-color-orange-6);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--mantine-color-orange-7);
+  }
+}
+
+.contactInfo {
+  padding: var(--mantine-spacing-xl);
+  background-color: var(--mantine-color-gray-0);
+  border-radius: var(--mantine-radius-md);
+  border: 1px solid var(--mantine-color-gray-2);
+}
+
+.infoTitle {
+  color: var(--mantine-color-blue-7);
+  font-weight: 700;
+  margin-bottom: var(--mantine-spacing-lg);
+}
+
+.infoText {
+  color: var(--mantine-color-gray-7);
+  line-height: 1.6;
+}
+
+.icon {
+  background-color: var(--mantine-color-blue-1);
+  color: var(--mantine-color-blue-7);
+}

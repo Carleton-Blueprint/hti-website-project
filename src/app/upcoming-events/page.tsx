@@ -586,117 +586,6 @@ function AllEvents() {
   );
 }
 
-function RegisterCTA() {
-  return (
-    <>
-      <Container size="lg">
-        <SectionSeparator color="#FF914D" glowColor="rgba(255, 145, 77, 0.6)" marginBottom={0} />
-      </Container>
-      <Box
-        component="section"
-        py={80}
-        style={{
-          position: "relative",
-          background: "linear-gradient(135deg, #004AAD 0%, #002255 100%)",
-          marginTop: "0",
-          borderRadius: "0",
-        }}
-      >
-      <Box
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          background:
-            "radial-gradient(circle at 20% 150%, rgba(255, 145, 77, 0.25) 0%, transparent 60%), radial-gradient(circle at 80% -20%, rgba(255, 255, 255, 0.15) 0%, transparent 40%)",
-          borderRadius: "0",
-          zIndex: 0,
-        }}
-      />
-
-      <Container size="md" style={{ position: "relative", zIndex: 1 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <Box ta="center">
-            <Title
-              order={2}
-              size="3.5rem"
-              fw={800}
-              style={{
-                color: "white",
-                lineHeight: 1.2,
-                marginBottom: "1.5rem",
-              }}
-            >
-              Ready to Join Our{" "}
-              <Text
-                span
-                inherit
-                style={{
-                  background:
-                    "linear-gradient(135deg, #FF914D 0%, #FFB38A 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Events?
-              </Text>
-            </Title>
-
-            <Text
-              size="xl"
-              style={{
-                color: "rgba(255, 255, 255, 0.9)",
-                maxWidth: "700px",
-                margin: "0 auto 2rem",
-                lineHeight: 1.6,
-              }}
-            >
-              Sign up for our newsletter to receive updates about upcoming
-              events, workshops, and opportunities in health tech innovation.
-            </Text>
-
-            <Group justify="center">
-              <Button
-                size="xl"
-                variant="gradient"
-                gradient={{ from: "#FF914D", to: "#ff6b1a" }}
-                style={{
-                  padding: "0 3rem",
-                  fontWeight: 600,
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Register Now
-              </Button>
-              <Button
-                size="xl"
-                variant="outline"
-                color="white"
-                style={{
-                  padding: "0 3rem",
-                  fontWeight: 600,
-                  borderWidth: "2px",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Contact Us
-              </Button>
-            </Group>
-          </Box>
-        </motion.div>
-      </Container>
-    </Box>
-    </>
-  );
-}
-
 export default function UpcomingEvents() {
   return (
     <main
@@ -719,7 +608,6 @@ export default function UpcomingEvents() {
           <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
         </Container>
         <AllEvents />
-        <RegisterCTA />
       </div>
     </main>
   );

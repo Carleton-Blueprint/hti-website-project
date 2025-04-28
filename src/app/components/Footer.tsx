@@ -2,25 +2,27 @@
 
 import { Container, Title, Text, Button, Group, Box } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
-import SectionSeparator from "./SectionSeparator";
+import SectionSeparator from "./SectionSeparator"; // Import SectionSeparator
+import { useRouter } from "next/navigation";
 
-export default function CallToAction() {
+export function Footer() {
+  const router = useRouter();
   return (
-    <div style={{ position: "relative", marginTop: "20px" }}>
+    <>
       <SectionSeparator
         color="#FF914D"
         glowColor="rgba(255, 145, 77, 0.6)"
         marginBottom={0}
         marginTop={0}
       />
-
       <Box
+        component="footer" // Changed to footer semantic element
         style={{
           background: "linear-gradient(135deg, #004AAD 0%, #002255 100%)",
           padding: "100px 0",
           position: "relative",
           overflow: "hidden",
-          paddingTop: "150px",
+          paddingTop: "150px", // Kept padding for consistency, adjust if needed
           borderRadius: "0",
         }}
       >
@@ -93,6 +95,7 @@ export default function CallToAction() {
               variant="gradient"
               gradient={{ from: "#FF914D", to: "#ff6b1a" }}
               rightSection={<IconArrowRight size={24} />}
+              onClick={() => router.push("/sign-up")}
               style={{
                 transition: "transform 0.2s ease",
                 "&:hover": {
@@ -106,6 +109,7 @@ export default function CallToAction() {
               size="xl"
               variant="outline"
               color="white"
+              onClick={() => router.push("/contact-us")}
               style={{
                 transition: "all 0.2s ease",
                 "&:hover": {
@@ -119,6 +123,6 @@ export default function CallToAction() {
           </Group>
         </Container>
       </Box>
-    </div>
+    </>
   );
 }

@@ -1,6 +1,9 @@
+// Removed "use client" directive
+
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import type { Metadata } from "next";
+// Removed usePathname import
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {
@@ -10,6 +13,8 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 import { Providers } from "./providers";
+import { Footer } from "./components/Footer";
+// Removed LayoutClient import
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,6 +78,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Removed pathname logic
+
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
@@ -83,7 +90,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MantineProvider theme={theme} defaultColorScheme="light">
-          <Providers>{children}</Providers>
+          <Providers>{children}</Providers> {/* Render children directly in Providers */}
+          <Footer />
         </MantineProvider>
       </body>
     </html>
