@@ -1,4 +1,4 @@
-import { Card, TextInput, Button, Group } from "@mantine/core";
+import { Card, TextInput, Button } from "@mantine/core";
 import { IconSearch, IconFilter } from "@tabler/icons-react";
 import styles from "./styles.module.css";
 
