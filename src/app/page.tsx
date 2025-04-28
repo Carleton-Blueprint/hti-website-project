@@ -23,7 +23,6 @@ import {
 } from "@tabler/icons-react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import CallToAction from "./components/CallToAction";
 import SectionSeparator from "./components/SectionSeparator";
 import { motion } from "framer-motion";
 import { useRef } from "react";
@@ -664,7 +663,6 @@ export default function Home() {
           <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
         </Container>
         <LatestEvents />
-        <CallToAction />
       </div>
     </main>
   );

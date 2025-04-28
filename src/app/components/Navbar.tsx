@@ -46,14 +46,14 @@ const Navbar = () => {
                 <Image
                   src="/logo.png"
                   alt="Health Tech Innovators Logo"
-                  width={48}
-                  height={48}
+                  width={35} // Set fixed smaller width
+                  height={35} // Set fixed smaller height
                   style={{
-                    height: scrolled ? "40px" : "45px",
-                    width: "auto",
+                    // Removed height from style
+                    width: "auto", // Keep width auto if height is primary control
                     objectFit: "contain",
                     filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2))",
-                    transition: "height 0.3s ease",
+                    // Removed height transition as it's no longer conditional
                   }}
                 />
                 <Text
