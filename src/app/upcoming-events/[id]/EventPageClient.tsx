@@ -31,7 +31,8 @@ import {
 import Navbar from "../../components/Navbar";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { EventType } from "../eventData";
+import { Event } from '@/contentful/queries/event';
+import { documentToReactComponents, Options } from "@contentful/rich-text-react-renderer";
 
 function ParallaxBackground() {
   return (
@@ -83,7 +84,7 @@ function ParallaxBackground() {
 }
 
 interface EventPageClientProps {
-  event: EventType;
+  event: Event;
 }
 
 export default function EventPageClient({ event }: EventPageClientProps) {
@@ -95,6 +96,16 @@ export default function EventPageClient({ event }: EventPageClientProps) {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const descriptionFormatOptions: Options = {
+    renderText: (text) => {
+      return text.split("\n").map((line, i) => (
+        <Text key={i} mb="sm">
+          {line}
+        </Text>
+      ));
+    },
   };
 
   return (
@@ -196,7 +207,9 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                       style={{ lineHeight: 1.7, color: "#333" }}
                       fw={500}
                     >
-                      {event.longDescription || event.description}
+                      {
+                      documentToReactComponents(event.longDescription || event.description, descriptionFormatOptions)
+                      }
                     </Text>
                   </Box>
                 </motion.div>

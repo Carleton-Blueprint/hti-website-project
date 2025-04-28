@@ -13,6 +13,9 @@ import {
 } from "@mantine/core";
 import { useRef } from "react";
 import styles from "./styles.module.css";
+import { TeamMember, getAllTeamMembers } from "@/contentful/queries/team";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { useState, useEffect } from "react";
 
 const teamMembers = [
   {
@@ -173,7 +176,7 @@ function TeamHero() {
   );
 }
 
-function TeamMembers() {
+function TeamMembers({ members }: { members: TeamMember[] }) {
   const teamRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -218,7 +221,7 @@ function TeamMembers() {
           cols={{ base: 1, sm: 2, lg: 3 }}
           spacing={{ base: 30, sm: 40 }}
         >
-          {teamMembers.map((member, index) => (
+          {members.map((member, index) => (
             <div key={index}>
               <Card
                 padding="lg"
@@ -259,7 +262,7 @@ function TeamMembers() {
                     }}
                   >
                     <Image
-                      src={member.imageUrl}
+                      src={member.image}
                       alt={member.name}
                       style={{
                         width: "100%",
@@ -286,7 +289,7 @@ function TeamMembers() {
                       marginBottom: "1rem",
                     }}
                   >
-                    {member.title}
+                    {member.role}
                   </Text>
                 </Box>
 
@@ -299,7 +302,7 @@ function TeamMembers() {
                     flex: 1,
                   }}
                 >
-                  {member.bio}
+                  {documentToPlainTextString(member.bio)}
                 </Text>
 
                 <Group gap="xs" style={{ flexWrap: "wrap" }}>
@@ -344,11 +347,23 @@ function TeamMembers() {
 }
 
 export function Team() {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchResources = async () => {
+      const data = await getAllTeamMembers();
+      setTeamMembers(data);
+    };
+
+    fetchResources();
+  }, []);
+
   return (
     <>
       <ParallaxBackground />
       <TeamHero />
-      <TeamMembers />
+      <TeamMembers members={teamMembers} />
     </>
   );
 }

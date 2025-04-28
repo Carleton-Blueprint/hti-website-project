@@ -13,9 +13,10 @@ import {
 } from "@mantine/core";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
-import { getAllPosts } from "./postMock";
-import { useState } from "react";
-import { IconCalendar } from "@tabler/icons-react";
+import { getAllBlogPosts } from "@/contentful/queries/blogPost";
+import { BlogPost } from "@/contentful/queries/blogPost"
+import { useState, useEffect } from "react";
+import { IconSearch, IconFilter, IconCalendar } from "@tabler/icons-react";
 import styles from "./styles.module.css";
 import { SearchFilter } from "./SearchFilter";
 
@@ -126,9 +127,18 @@ function BlogHero() {
 }
 
 export default function NewsBlog() {
-  const posts = getAllPosts();
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  useEffect(() => {
+    getAllBlogPosts().then(setPosts);
+    setCategories([
+      "all",
+      ...Array.from(new Set(posts.map((post) => post.category?.toLowerCase()).filter((cat): cat is string => Boolean(cat)))),
+    ])
+  }, [posts]);
 
   const filteredPosts = posts.filter((post) => {
     const matchesSearch =
@@ -136,14 +146,9 @@ export default function NewsBlog() {
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategory === "all" ||
-      post.category.toLowerCase() === selectedCategory.toLowerCase();
+      post.category?.toLowerCase() === selectedCategory.toLowerCase();
     return matchesSearch && matchesCategory;
   });
-
-  const categories = [
-    "all",
-    ...Array.from(new Set(posts.map((post) => post.category.toLowerCase()))),
-  ];
 
   return (
     <main className="grid-bg">

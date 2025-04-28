@@ -25,8 +25,11 @@ import {
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import events from "./eventData";
 import SectionSeparator from "../components/SectionSeparator";
+import { useEffect, useState } from "react";
+import { Event, getAllEvents } from "@/contentful/queries/event";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 function ParallaxBackground() {
   return (
@@ -257,9 +260,7 @@ function EventFilters() {
   );
 }
 
-const upcomingEvents = events;
-
-function FeaturedEvents() {
+function FeaturedEvents({ events }: { events: Event[] }) {
   return (
     <Box
       component="section"
@@ -304,7 +305,7 @@ function FeaturedEvents() {
         </motion.div>
 
         <Grid gutter={30}>
-          {upcomingEvents
+          {events
             .filter((event) => event.isFeatured)
             .map((event, index) => (
               <Grid.Col key={event.id} span={{ base: 12, md: 6 }}>
@@ -363,7 +364,7 @@ function FeaturedEvents() {
                       {event.title}
                     </Title>
                     <Text size="md" style={{ color: "#2D3748", flex: 1 }}>
-                      {event.description}
+                      {documentToReactComponents(event.description)}
                     </Text>
 
                     <Box mt="xl">
@@ -414,7 +415,7 @@ function FeaturedEvents() {
   );
 }
 
-function AllEvents() {
+function AllEvents({ events }: { events: Event[] }) {
   return (
     <Box
       component="section"
@@ -458,7 +459,7 @@ function AllEvents() {
         </motion.div>
 
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={20}>
-          {upcomingEvents.map((event, index) => (
+          {events.map((event, index) => (
             <motion.div
               key={event.id}
               initial={{ opacity: 0, y: 20 }}
@@ -534,8 +535,9 @@ function AllEvents() {
                         marginBottom: "1.5rem",
                       }}
                     >
-                      {event.description.substring(0, 120)}
-                      {event.description.length > 120 ? "..." : ""}
+
+                      {documentToPlainTextString(event.description).substring(0, 120)}
+                      {documentToPlainTextString(event.description).length > 120 ? "..." : ""}
                     </Text>
                   </div>
 
@@ -587,6 +589,25 @@ function AllEvents() {
 }
 
 export default function UpcomingEvents() {
+
+  const [events, setEvents] = useState<Event[]>([]);
+  //const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const allEvents = await getAllEvents();
+        setEvents(allEvents);
+      } catch (error) {
+        console.error("Failed to fetch events:", error);
+      } finally {
+        //setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
   return (
     <main
       className="grid-bg"
@@ -603,11 +624,11 @@ export default function UpcomingEvents() {
         <Navbar />
         <EventsHero />
         <EventFilters />
-        <FeaturedEvents />
+        <FeaturedEvents events={events}/>
         <Container size="lg">
           <SectionSeparator color="#004AAD" glowColor="rgba(0, 74, 173, 0.6)" />
         </Container>
-        <AllEvents />
+        <AllEvents events={events}/>
       </div>
     </main>
   );

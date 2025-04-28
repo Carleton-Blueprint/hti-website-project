@@ -18,9 +18,13 @@ import {
   IconDeviceLaptop,
   IconBriefcase,
   IconHeartHandshake,
+  IconInfoCircle,
 } from "@tabler/icons-react";
 import styles from "./styles.module.css";
 import SectionSeparator from "../components/SectionSeparator";
+import { Resource, getAllResources } from "@/contentful/queries/resource";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { useState, useEffect } from "react";
 
 const resources = [
   {
@@ -88,6 +92,29 @@ const resources = [
     icon: IconHeartHandshake,
   },
 ];
+
+export function getCategoryIcon(category: string) {
+  switch (category) {
+    case "Tips & Tricks":
+      return IconBulb;
+    case "Scholarship":
+      return IconSchool;
+    case "Research Opportunity":
+      return IconMicroscope;
+    case "Funds":
+      return IconCoin;
+    case "Education":
+      return IconDeviceLaptop;
+    case "Career":
+      return IconBriefcase;
+    case "Learning":
+      return IconBookmark;
+    case "Networking":
+      return IconHeartHandshake;
+    default:
+      return IconInfoCircle;
+  }
+}
 
 function ParallaxBackground() {
   return (
@@ -197,6 +224,22 @@ function ResourceHero() {
 }
 
 export function Resources() {
+  const [resources, setResources] = useState<Resource[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchResources = async () => {
+      let data = await getAllResources();
+      data = data.map((item) => ({
+        ...item,
+        icon: getCategoryIcon(item.category),
+      }));
+      setResources(data);
+    };
+
+    fetchResources();
+  }, []);
+
   return (
     <>
       <ParallaxBackground />
@@ -280,7 +323,7 @@ export function Resources() {
                 </div>
 
                 <Text className={styles["resource-description"]}>
-                  {resource.description}
+                  {documentToPlainTextString(resource.description)}
                 </Text>
 
                 <Button

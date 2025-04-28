@@ -2,14 +2,14 @@ import { Suspense } from "react";
 import events from "../eventData";
 import { notFound } from "next/navigation";
 import EventPageClient from "./EventPageClient";
+import { getEventById } from "@/contentful/queries/event";
 
 type paramsType = {
   params: Promise<{ id: string }>;
 };
 
 async function getEvent(id: string) {
-  await new Promise((resolve) => setTimeout(resolve, 10));
-  return events.find((event) => event.id === id) || null;
+  return await getEventById(id);
 }
 
 export default async function EventPage({ params }: paramsType) {
